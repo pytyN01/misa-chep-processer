@@ -1,5 +1,10 @@
 # Misa California Chep Processer
 
-## Progressive Web App
+## [View Live Demo on Vercel](https://chep-processer.vercel.app/)
 
-View Live site @ [Chep Processer](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Built with:
+
+---next\
+---react\
+---next-pwa\
+---react-dom\
