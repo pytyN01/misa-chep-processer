@@ -1,19 +1,23 @@
-import MisaLogo from "../comps/misa-logo";
 import SubmitButton from "../comps/button";
-import Text from "../comps/text";
+import MisaLogo from "../comps/misa-logo";
 import Input from "../comps/input";
+import Text from "../comps/text";
+import Swal from "sweetalert2";
 import React from "react";
 
 export default function Index() {
   const [state, setState] = React.useState(null);
-  const empty = "Oooops.... Can't submit an empty form!";
-  const error = "Oooops.... Something went wrong.. Try Again.";
 
   const submit = (event) => {
     event.preventDefault();
 
-    if (!state) {
-      alert(empty);
+    if (!state || !state.trim()) {
+      Swal.fire({
+        title: "Oooops....",
+        text: "Can't submit an empty form!",
+        icon: "error",
+        confirmButtonText: "Re-try",
+      });
     } else if (state) {
       if (event.keyCode == 13) {
         processer();
@@ -23,7 +27,12 @@ export default function Index() {
         return false;
       }
     } else {
-      alert(error);
+      Swal.fire({
+        title: "Oooops....",
+        text: "Theres an error on our end... try again...",
+        icon: "error",
+        confirmButtonText: "Re-try",
+      });
     }
   };
 
@@ -43,8 +52,16 @@ export default function Index() {
 
       processed.push(chep[0]);
     });
-    alert("Processed");
-    console.log("Processed: ", processed);
+    Swal.fire({
+      icon: "success",
+      title: "Processed!",
+      text: "We successfully processed the below orders.",
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Finish!',
+      html: `<pre class="text-start">
+      ${JSON.stringify(processed, undefined, 1)}
+      </pre>`,
+      showCloseButton: true,
+    });
   };
 
   return (
